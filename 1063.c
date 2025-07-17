@@ -1,4 +1,5 @@
 #include <stdio.h>   
+#include <stdlib.h>
 #include <string.h>  
 
 int dx[] = {1, -1, 0, 0, 1, -1, 1, -1}; //R, L, B, T, RT, LT, RB, LB
@@ -7,16 +8,16 @@ char *move_str[] = {"R", "L", "B", "T", "RT", "LT", "RB", "LB"}; // 이동 명�
 
 //* keypoint, 돌 또는 킹이 체스판을 벗어나는지 확인하기 위해 temp 값을 둔다.
 int main() {
-    char king[3], stone[3], cmd[4]; // 킹, 돌, 명령어를 저장할 문자열 배열, 마지막은 null문자.
-    short n;                         // 명령어 개수 저장 변수
+    char king[3], stone[3], cmd[3]; // 킹, 돌, 명령어를 저장할 문자열 배열, 마지막은 null문자.
+    int n;                         // 명령어 개수 저장 변수
 
     scanf("%s %s %d", king, stone, &n); // 킹 위치, 돌 위치, 명령 개수 입력
     
-    int king_x = king[0] - 'A'; 
-    int king_y = king[1] - '8'; // 현재 킹의 x, y 좌표로 변환  
+     int king_x = king[0] - 'A';
+    int king_y = king[1] - '1';
 
     int stone_x = stone[0] - 'A';
-    int stone_y = stone[1] - '8';
+    int stone_y = stone[1] - '1';
 
      for (int i = 0; i < n; i++) {  // 명령 개수만큼 반복
      int temp_x = king_x;
@@ -38,7 +39,7 @@ int main() {
      temp_y += dy[direction];
 
      // *체스판을 벗어나는지 확인 (0~7)
-     if (temp_x < 0 || temp_x < -7 || temp_y > 0 || temp_y < -7)
+       if (temp_x < 0 || temp_x > 7 || temp_y < 0 || temp_y > 7)
           continue;
 
 
@@ -48,19 +49,21 @@ int main() {
           int temp_stone_y = stone_y + dy[direction];
 
           // *돌이 체스판을 벗어나면 이동 불가
-          if (temp_stone_x < 0 || temp_stone_x < -7 || temp_stone_y > 0 || temp_stone_y < -7)
+          if (temp_stone_x < 0 || temp_stone_x > 7|| temp_stone_y < 0 || temp_stone_y > 7)
                continue;
 
           //저장     
           stone_x = temp_stone_x;
           stone_y = temp_stone_y;
      }
-
      //*------------------------------------------최종 저장
      king_x = temp_x;
      king_y = temp_y;
 
 }
-     printf("%c%c\n%c%c", king_x + 'A', king_y + '8', stone_x + 'A', stone_y + '8'); 
+    printf("%c%c\n%c%c", king_x + 'A', king_y + '1', stone_x + 'A', stone_y + '1');
     return 0;    
     }
+
+
+
