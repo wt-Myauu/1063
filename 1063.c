@@ -64,20 +64,3 @@ int main() {
      printf("%c%c\n%c%c", king_x + 'A', king_y + '8', stone_x + 'A', stone_y + '8'); 
     return 0;    
     }
-    
-    
-
-
-                       
-
-
-// *체스판에는 돌이 하나 있는데, 돌과 같은 곳으로 이동할 때는, 돌을 킹이 움직인 방향과 같은 방향으로 한 칸 이동시킨다. 
-/*A1 A2 5
-B
-L
-LB
-RB
-LT
-A1 A2*/
-
-
